@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Website Quality</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <!-- Navigation bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="{{ url_for('index') }}">Web Application(CMT120)</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="{{ url_for('security') }}">Security</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="{{ url_for('quality') }}">Quality</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="{{ url_for('usability') }}">Usability</a>
+                    </li>
+                </ul>
+                {% if not logged_in %}
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="{{ url_for('registration') }}">Registration</a>
+                    </li>
+                </ul>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mt-5">
+        <!-- Quality content section -->
+        <h1 class="display-4">Website Quality</h1>
+        <p class="lead">Delivering a high-quality web experience is essential to engage users and drive conversions. Quality websites are built with the user in mind and adhere to web standards for optimal performance and user satisfaction.</p>
+        <p>Key factors that contribute to website quality:</p>
+        <ul>
+            <li>Fast website performance and loading times.</li>
+            <li>Responsive design for seamless user experience on various devices.</li>
+            <li>Adherence to web standards and best practices for compatibility.</li>
+            <li>Visually appealing design and user-friendly interface.</li>
+            <li>Easy-to-navigate layout and clear information hierarchy.</li>
+        </ul>
+        <p>By focusing on website quality, businesses can create a positive impression on users and enhance overall engagement.</p>
+        <a href="#" class="btn btn-primary">Learn More</a>
+    </div>
+
+    <footer class="text-center mt-5">
+        <p>Contact: ikusanCA@cardiff.ac.uk | Phone: +44 (123) 456-7890</p>
+        <p><a href="/privacy-policy">Privacy Policy</a> | <a href="/disclaimer">Disclaimer</a></p>
+    </footer>
+
+    <!-- Add Bootstrap JS and jQuery links here -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
