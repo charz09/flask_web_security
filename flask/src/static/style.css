@@ -122,3 +122,20 @@ form {
 form div {
     margin-bottom: 10px;
 }
+
+
+
+/* Set the background image for the registration and login pages */
+body{
+  background-image: url("../static/img/security.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}

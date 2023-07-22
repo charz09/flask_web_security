@@ -59,6 +59,29 @@
         <a href="#" class="btn btn-primary">Learn More</a>
     </div>
 
+    <div class="container mt-5">
+        <h2>Leave a Comment</h2>
+        <form method="post" action="{{ url_for('add_comment', page='usability') }}" class="mb-4">
+            <div class="form-group">
+                <textarea class="form-control" name="comment" rows="4" placeholder="Write your comment here"></textarea>
+            </div>
+            <input type="hidden" name="page" value="usability">  <!-- Add this hidden input field -->
+            <button type="submit" class="btn btn-primary">Submit Comment</button>
+        </form>
+    
+        <!-- Show existing comments, if any -->
+        {% if comments %}
+        <h2>Comments</h2>
+        <ul class="list-group">
+            {% for comment in comments %}
+            <li class="list-group-item">{{ comment.comment }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No comments yet. Be the first one to leave a comment!</p>
+        {% endif %}
+    </div>
+
     <footer class="text-center mt-5">
         <p>Contact: ikusanCA@cardiff.ac.uk | Phone: +44 (123) 456-7890</p>
         <p><a href="/privacy-policy">Privacy Policy</a> | <a href="/disclaimer">Disclaimer</a></p>
