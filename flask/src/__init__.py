@@ -14,17 +14,14 @@ app.config['DATABASE'] = 'database.db'
 #     return g.db
 
 def get_db():
-    conn = sqlite3.connect(app.config['DATABASE'])
-    conn.row_factory = sqlite3.Row
-    return conn
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = sqlite3.connect(app.config['DATABASE'])
+        db.row_factory = sqlite3.Row
+        g._database = db
+    return db
 
 @app.teardown_appcontext
-# def close_db(error):
-#     db = g.pop('db', None)
-#     if db is not None:
-#         db.close()
-
-
 def close_db(error):
     db = getattr(g, '_database', None)
     if db is not None:
@@ -41,7 +38,7 @@ def login():
         db.close()
 
         if user and bcrypt.checkpw(password.encode('utf-8'), user['password']):
-            # Successful login, set user as logged in (You may use Flask-Login for this)
+            # Successful login, set user as logged in
             session['user_id'] = user['id']
 
             flash('Successfully logged in!', 'success')
@@ -130,7 +127,7 @@ def security():
     if request.method == 'POST':
 
         if 'user_id' in session:
-        # Get the user ID from the current user (you'll need to implement this based on your login system)
+        # Get the user ID from the current user
             user_id = session['user_id']
 
             # Get the comment text from the form
@@ -157,7 +154,7 @@ def security():
 @app.route('/quality', methods=['GET', 'POST'])
 def quality():
     if request.method == 'POST':
-        # Get the user ID from the current user (you'll need to implement this based on your login system)
+        # Get the user ID from the current user
         user_id = session['user_id']
 
         # Get the comment text from the form
@@ -185,7 +182,7 @@ def quality():
 @app.route('/usability', methods=['GET', 'POST'])
 def usability():
     if request.method == 'POST':
-        # Get the user ID from the current user (you'll need to implement this based on your login system)
+        # Get the user ID from the current user
         user_id = session['user_id']
 
         # Get the comment text from the form
@@ -244,9 +241,6 @@ class Comment:
         cursor.execute("INSERT INTO comments (user_id, page, comment) VALUES (?, ?, ?)",
                        (self.user_id, self.page, self.comment))
         conn.commit()
-
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)
